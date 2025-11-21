@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auser "Un Po di Giochi" - Associazione Ludica</title>
+    <style>
+        /* --- IMPOSTAZIONI GENERALI E COLORI --- */
+        :root {
+            --primary-orange: #FF8C00; /* Arancio Meeple */
+            --secondary-blue: #0085CA; /* Blu Acqua */
+            --black: #1a1a1a;     /* Nero scuro per sfondi */
+            --dark-grey: #333333;
+            --white: #ffffff;
+            --light-grey: #f4f4f4;
+            --whatsapp-green: #25D366;
+            --linktree-green: #43E660;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--white);
+            width: 100%;
+            overflow-x: hidden; 
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- HEADER & NAVIGAZIONE --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1001; /* Assicura che il logo stia sopra il menu mobile */
+        }
+
+        .logo-img {
+            height: 60px; /* Leggermente ridotto per sicurezza su mobile */
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.3rem; 
+            font-weight: bold;
+            color: var(--black);
+        }
+        
+        .logo-text span {
+            color: var(--primary-orange);
+        }
+
+        /* Stile del menu Desktop */
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-orange);
+        }
+
+        /* Icona Hamburger (nascosta su Desktop) */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            background-color: var(--black);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('gioco.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 120px 20px;
+            text-align: center;
+            position: relative;
+            width: 100%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: var(--white);
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+            transform: scaleX(1.5);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-style: italic;
+            font-family: 'Georgia', serif;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-citation {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--primary-orange);
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-orange);
+            color: var(--white);
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: 2px solid var(--primary-orange);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary-orange);
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .btn-small {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background-color: var(--secondary-blue);
+            color: white;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .btn-small:hover {
+            background-color: var(--primary-orange);
+            transform: scale(1.05);
+        }
+
+        /* --- SEZIONI --- */
+        .section {
+            padding: 60px 20px;
+            width: 100%;
+        }
+
+        .section-header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 60px;
+            padding-top: 20px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            color: var(--black);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 4px;
+            background-color: var(--primary-orange);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- GRIGLIE --- */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .text-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .text-content ul {
+            list-style: none; 
+            margin-left: 0;
+            margin-bottom: 20px;
+        }
+        
+        .text-content li {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            padding-left: 20px;
+            border-left: 3px solid var(--primary-orange); 
+        }
+
+        .image-box {
+            background-color: var(--light-grey);
+            border-radius: 20px;
+            border: 5px solid var(--primary-orange);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .image-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* --- COSA FACCIAMO --- */
+        .activities {
+            background-color: var(--light-grey);
+        }
+
+        /* Impostiamo minmax a 280px per supportare schermi piccoli */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+            border-top: 5px solid var(--secondary-blue);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--black);
+        }
+
+        .card p {
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-orange);
+        }
+
+        /* --- DOVE E QUANDO (INFO BOX) --- */
+        .info-box {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .info-box h3 {
+            color: var(--primary-orange);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+        }
+
+        .info-box p {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Bottone Mappa */
+        .map-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin: 20px 0 40px 0;
+            border: 1px solid var(--primary-orange);
+            transition: 0.3s;
+            color: var(--white);
+        }
+
+        .map-button:hover {
+            background-color: var(--primary-orange);
+            color: var(--black);
+        }
+
+        /* Orari con icona */
+        .hours-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .clock-icon {
+            width: 40px;
+            height: 40px;
+            fill: var(--secondary-blue);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+            border-top: 5px solid var(--primary-orange);
+            width: 100%;
+            margin-top: 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: var(--white);
+            font-size: 1.1rem;
+            padding: 12px 25px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .social-links a:hover {
+            color: var(--black);
+            background-color: var(--primary-orange);
+            border-color: var(--primary-orange);
+            transform: translateY(-3px);
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* --- TASTO WHATSAPP --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp-green);
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            z-index: 9999;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-icon {
+            width: 35px;
+            height: 35px;
+            fill: white;
+        }
+
+        /* --- MEDIA QUERIES PER MOBILE (RESPONSIVE) --- */
+        @media (max-width: 768px) {
+            /* Menu Mobile Hamburger */
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px; /* Altezza header */
+                gap: 0;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+                padding-bottom: 20px;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 16px 0;
+            }
+
+            /* Adattamenti Hero */
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            /* Adattamenti Generali */
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Ordine inverso per Guardie e Ladri su mobile */
+            #guardie-ladri .grid-layout {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .info-box {
+                padding: 30px 20px;
+            }
+
+            .social-links {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .social-links a {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .hours-container {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="logo.png" alt="Logo Un Po di Giochi" class="logo-img">
+                <div class="logo-text">Auser "Un <span>Po</span> di Giochi"</div>
+            </div>
+            
+            <!-- Menu di navigazione -->
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#chi-siamo">Chi Siamo</a></li>
+                    <li><a href="#attivita">Attività</a></li>
+                    <li><a href="#guardie-ladri">Progetti</a></li>
+                    <li><a href="#dove">Dove Siamo</a></li>
+                    <li><a href="#contatti">Contatti</a></li>
+                </ul>
+                
+                <!-- Icona Hamburger per Mobile -->
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <h1>"Si può scoprire di più su una persona in un'ora di gioco che in un anno di conversazione"</h1>
+            <p class="hero-citation">- Platone</p>
+            <p>Qui troverai un posto al tavolo, nuovi amici e infinite storie da raccontare. La nostra porta è sempre aperta per te.</p>
+            <a href="#dove" class="btn">Vieni a Giocare</a>
+        </div>
+    </section>
+
+    <!-- CHI SIAMO -->
+    <section id="chi-siamo" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Chi Siamo</h2>
+            </div>
+            <div class="grid-layout">
+                <div class="text-content">
+                    <p>Nel giugno 2022, un gruppo di sei amici appassionati di giochi da tavolo ha deciso di fondare <strong>"Un Po di Giochi"</strong>. Il nostro desiderio era semplice ma ambizioso: creare un punto di riferimento per chiunque volesse riscoprire il piacere di stare insieme.</p> 
+                    <p>Grazie al fondamentale supporto del "Progetto Giovani" di <strong>Auser Dosolo-Pomponesco</strong>, quell'idea è diventata una realtà concreta per tutto il territorio Dosolese, Viadanese e Mantovano. Il nome "Un Po di Giochi" è un omaggio alla nostra terra e al Grande Fiume che ci accompagna.</p>
+                    <p><strong>I nostri obiettivi:</strong></p>
+                    <ul>
+                        <li>Diffondere la cultura del gioco intelligente partecipando attivamente a eventi e manifestazioni locali.</li>
+                        <li>Accogliere giocatori esperti e neofiti nella nostra sede di <strong>Correggioverde</strong>.</li>
+                        <li>Collaborare con altre associazioni e realtà del territorio, perché crediamo che fare rete sia il modo migliore per crescere insieme.</li>
+                    </ul>
+                    <p>Il gioco per noi è aggregazione, inclusione e divertimento sano: una scintilla capace di creare legami autentici.</p>
+                </div>
+                <div class="image-box">
+                    <img src="gruppo.jpg" alt="Il team di Auser Un Po di Giochi">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COSA FACCIAMO -->
+    <section id="attivita" class="section activities">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Cosa Facciamo</h2>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">🎲</div>
+                    <h3>Giochi da Tavolo</h3>
+                    <p>La nostra libreria vanta <strong>più di 300 titoli</strong> tra novità e grandi classici, sempre in aggiornamento.</p>
+                    <a href="https://boardgamegeek.com/collection/user/unpodigiochi" target="_blank" class="btn-small">Vedi la Collezione</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🐉</div>
+                    <h3>Giochi di Ruolo</h3>
+                    <p>Vivi mille emozioni ed esplora reami dimenticati. Diventa l'eroe della tua storia in mondi fantastici.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🤝</div>
+                    <h3>Serate di Gioco</h3>
+                    <p>Ci ritroviamo <strong>ogni Mercoledì dalle 21:00</strong> presso la sede di <strong>Villastrada</strong>.</p>
+                    <p style="color: var(--secondary-blue); font-weight: bold; margin-top: 10px;">Tutte le serate sono gratuite e accessibili a tutti!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEZIONE GUARDIE & LADRI -->
+    <section id="guardie-ladri" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Guardie & Ladri</h2>
+            </div>
+            <div class="grid-layout">
+                <div class="image-box">
+                    <img src="guardieladri.jpg" alt="Guardie e Ladri GDR Copertina">
+                </div>
+                <div class="text-content">
+                    <p>Siamo orgogliosi di presentare <strong>"Guardie & Ladri"</strong>, un Gioco di Ruolo unico nato grazie al finanziamento del Piano GAP - <strong>ATS Val Padana</strong> e dell'<strong>Azienda Speciale Consortile Oglio Po</strong> nell’ambito del progetto <strong>“GIOCHI DI COMUNITÀ”</strong>.</p>
+                    <p>Il gioco è stato realizzato nel <strong>2024</strong>. Nel corso dello stesso anno, <strong>Auser "Un Po di Giochi"</strong> e <strong>Arca</strong> lo hanno portato con successo in diverse realtà scolastiche, oratoriali e aggregative. Grazie a questi risultati, le sperimentazioni sono state <strong>nuovamente finanziate per l'anno 2025/2026</strong> con il Piano GAP e il progetto <strong>"Scommetto che Smetto"</strong>.</p>
+                    <p>Un’iniziativa nata con l’intento di sensibilizzare la collettività sul tema dell'azzardopatia, promuovendo invece il valore del gioco sano come strumento di socializzazione e inclusività. Il progetto è stato portato avanti con passione da <strong>Auser “Un Po di Giochi”</strong> insieme ai preziosi contributi di AUSER Dosolo/Pomponesco, Azienda Speciale Consortile Oglio Po, Consorzio Casalasco Servizi alla Persona, Fondazione ARCA, Arca Formazione e CSV Lombardia Sud ETS.</p>
+                    <p><em>Prodotto da Officina Meningi.</em></p>
+                    <br>
+                    <a href="https://drive.google.com/file/d/10lo30gmu_6qTimyGg4Vmx5c8G2kLqd8x/view?usp=drive_link" target="_blank" class="btn">Scaricalo Gratuitamente</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOVE (SALI A BORDO) -->
+    <section id="dove" class="section" style="background-color: var(--light-grey);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sali a Bordo</h2>
+            </div>
+            
+            <div class="info-box">
+                <h3>Dove siamo:</h3>
+                <p style="font-size: 1.3rem;"><strong>Via U. Sabbadini, 10</strong></p>
+                <p>46030 Villastrada (MN)</p>
+                
+                <a href="https://www.google.com/maps/search/?api=1&query=Via+U.+Sabbadini+10+Villastrada+MN" target="_blank" class="map-button">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    Naviga verso la sede
+                </a>
+
+                <hr style="opacity: 0.2; margin: 20px auto; width: 50%;">
+
+                <div class="hours-container">
+                    <svg class="clock-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                    <div>
+                        <p style="font-size: 1.3rem; font-weight: bold; color: var(--primary-orange); margin: 0;">MERCOLEDÌ</p>
+                        <p style="margin: 0;">dalle 21:00 alle 01:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contatti">
+        <div class="footer-content">
+            <div class="logo-container" style="justify-content: center;">
+                <span style="font-size: 1.8rem; font-weight: bold;">Auser "Un Po di Giochi"</span>
+            </div>
+            <p>Affiliati Auser - Villastrada (MN)</p>
+            
+            <div class="social-links">
+                <a href="https://www.facebook.com/unpodigiochi/" target="_blank">
+                    <svg class="social-icon" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    Facebook
+                </a>
+                <a href="https://www.instagram.com/unpodigiochi/" target="_blank">
+                    <svg class="social-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    Instagram
+                </a>
+                <a href="https://linktr.ee/unpodigiochi" target="_blank">
+                    <svg class="social-icon" viewBox="0 0 24 24"><path d="M13.736 5.853L12 2 10.264 5.853H2v2.667h5.16l-3.376 7.52H6.5L12 9.066l5.5 6.974h2.716l-3.376-7.52H22V5.853h-8.264z M10.4 17.555h3.2v4.445h-3.2v-4.445z"/></svg>
+                    Linktree
+                </a>
+                <a href="mailto:auser.unpodigiochi@gmail.com">
+                    <svg class="social-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    Inviaci una Mail
+                </a>
+            </div>
+            <p style="font-size: 0.8rem; color: #888;">&copy; 2025 Auser "Un Po di Giochi". Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <!-- TASTO WHATSAPP -->
+    <a href="https://wa.me/393455044984" class="whatsapp-float" target="_blank" title="Scrivici su WhatsApp">
+        <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- Script per il menu mobile -->
+    <script>
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }));
+    </script>
+
+</body>
+</html>
