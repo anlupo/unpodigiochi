@@ -379,10 +379,8 @@
             background-color: var(--white);
         }
 
-        /* Griglia Responsive per Sostenitori */
         .sponsors-grid {
             display: grid;
-            /* Desktop: colonne automatiche */
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
             gap: 40px;
             align-items: center;
@@ -527,16 +525,14 @@
             .social-links a { justify-content: center; width: 100%; }
             .hours-container { flex-direction: column; gap: 5px; }
             
-            /* MODIFICA SPECIFICA PER I LOGHI MOBILE: 2 COLONNE */
+            /* MODIFICA LOGHI MOBILE */
             .sponsors-grid {
-                grid-template-columns: repeat(2, 1fr); /* Forza 2 colonne */
-                gap: 20px; /* Riduce lo spazio */
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 20px; 
             }
-            
-            /* Loghi leggermente più piccoli su mobile per stare bene in 2 colonne */
             .sponsor-logo { 
                 max-height: 70px; 
-                max-width: 90%; /* Evita che sbordino */
+                max-width: 90%; 
             }
         }
     </style>
@@ -684,7 +680,7 @@
         </div>
     </section>
 
-    <!-- NUOVA SEZIONE SOSTENITORI -->
+    <!-- SEZIONE SOSTENITORI -->
     <section class="section sponsors-section">
         <div class="container">
             <div class="section-header">
@@ -692,6 +688,7 @@
             </div>
 
             <div class="sponsors-grid">
+                <img src="auser_dosolo.png" alt="Auser Dosolo" class="sponsor-logo">
                 <img src="brothers.png" alt="Brothers srls" class="sponsor-logo">
                 <img src="cgm.png" alt="CGM Meccanica" class="sponsor-logo">
                 <img src="duegi.jpg" alt="Duegi" class="sponsor-logo">
